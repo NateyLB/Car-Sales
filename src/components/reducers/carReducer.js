@@ -21,14 +21,21 @@ export const intialState = {
             //let newAdditionalFeatures = state.additionalFeatures.filter(element=> element.id != action.payload)
             return{
                 ...state,
+                additionalPrice:state.additionalPrice+ state.additionalFeatures[action.payload-1].price,
                 car:{...state.car, features:[...state.car.features,state.additionalFeatures[action.payload-1]]},
+
               //  additionalFeatures:[...newAdditionalFeatures]
             }
 
             case "ADDED_FEATURES_ONCLICK":
                 let newFeatures = state.car.features.filter(element=> element.id != action.payload)
+                let newPrice=state.additionalPrice
+                newFeatures.forEach(element =>{
+                    newPrice-= element.price
+                })
                 return{
                     ...state,
+                    additionalPrice: state.additionalPrice - newPrice,
                     car:{...state.car, features:[...newFeatures]}
                 }
         
