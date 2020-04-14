@@ -12,11 +12,9 @@ const Header = props => {
     </>
   );
 };
-
+//data from reducer
 const mapStateToProps = state => {
   return {
-    // titleOnProps: state.title,
-    // editingOnProps: state.editing
     car: state.car
   };
 };
@@ -26,8 +24,3 @@ mapStateToProps,
 {}
 )(Header)
 
-
-// export default connect(
-//   mapStateToProps,
-//   { toggleEditing, updateTitle } // { toggleEditing: toggleEditing }
-// )(Title); // function currying in JS
