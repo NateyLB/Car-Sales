@@ -14,6 +14,7 @@ const Header = props => {
 };
 //data from reducer
 const mapStateToProps = state => {
+  console.log(state)
   return {
     car: state.car
   };
