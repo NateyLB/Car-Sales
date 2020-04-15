@@ -18,24 +18,24 @@ export const intialState = {
   export const carReducer = (state=intialState, action) =>{
     switch (action.type){
         case "ADDITIONAL_FEATURES_ONCLICK":
-            //let newAdditionalFeatures = state.additionalFeatures.filter(element=> element.id != action.payload)
+           // let newAdditionalFeatures = state.additionalFeatures.filter(element=> element.id !== action.payload.id)
             return{
                 ...state,
-                additionalPrice:state.additionalPrice+ state.additionalFeatures[action.payload-1].price,
-                car:{...state.car, features:[...state.car.features,state.additionalFeatures[action.payload-1]]},
+                additionalPrice:state.additionalPrice+ action.payload.price,
+                car:{...state.car, features:[...state.car.features,state.additionalFeatures[action.payload.id-1]]},
 
-              //  additionalFeatures:[...newAdditionalFeatures]
+               //additionalFeatures:[...newAdditionalFeatures]
             }
 
             case "ADDED_FEATURES_ONCLICK":
-                let newFeatures = state.car.features.filter(element=> element.id != action.payload)
-                let newPrice=state.additionalPrice
-                newFeatures.forEach(element =>{
-                    newPrice-= element.price
-                })
+                let newFeatures = state.car.features.filter(element=> element.id !== action.payload.id)
+                // let newPrice=state.additionalPrice
+                // newFeatures.forEach(element =>{
+                //     newPrice-= element.price
+                // })
                 return{
                     ...state,
-                    additionalPrice: state.additionalPrice - newPrice,
+                    additionalPrice: state.additionalPrice - action.payload.price,
                     car:{...state.car, features:[...newFeatures]}
                 }
         
